@@ -1,1 +1,1 @@
-web: gunicorn TSEcomSite.wsgi
+web:gunicorn TSEcomSite.wsgi
