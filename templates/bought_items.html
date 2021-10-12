@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load format %} {% load static %} {% block title %}Bought Items{% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\cart.css' %}"> {% endblock css_files %} {% block content %}
+<div class="cart">
+    <p id='cart-name'>You Bought These Items</p>
+    {% if items %}
+    <ul class="cart">
+        {% for item in items %}
+        <li class="item">
+            <img src={{item.product.image.url}} class='product-img'>
+            <div class='details'>
+                <div class="product-detail">
+                    <a href="{% url 'Product' item.product.id %}" class="product-name">{{item.product.name | truncatechars:15}}</a>
+                    <p class="product-status">Status : {% if item.status == 1 %} Processed By Seller {% elif item.status == 2 %} In Shipping {% elif item.status == 3 %} Made It {% endif %}
+                    </p>
+                    <p class="quantity">Qty : {{item.quantity}}</p>
+                    <p class="quantity">Date Bought : {{item.date_bought}}</p>
+                    <div class="product-shop">
+                        <img src="{{item.product.seller.image.url}}">
+                        <a href="{% url 'Public Profile' item.product.seller.id %}">{{item.product.seller.user.first_name}}</a>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'Add Review' item.product.id %}" class="del-product-btn">Leave Review</a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class='empty'>
+        <!--<img class='empty-cart' src='{% static "img\empty_cart.png" %}'>-->
+        <p class='empty-cart'><i class="fas fa-shopping-cart"></i></p>
+        <p class="no-product">You haven't buy anything, go buy some stuff</p>
+    </div>
+    {% endif %}
+</div>
+</div>
+
+{% endblock content %}

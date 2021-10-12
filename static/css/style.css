@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    list-style: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #062a2f;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    z-index: 3;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.navlinks {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0 10px;
+}
+
+.navlinks li {
+    margin: 0 10px;
+    padding: 3px;
+}
+
+.navlinks a {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.show-navbar,
+.hide-navbar,
+#chk,
+.navlinks-logo {
+    font-size: 2rem;
+    display: none;
+}
+
+#search-field {
+    padding: 5px 7px;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+}
+
+footer {
+    width: 100%;
+    background-color: #062a2f;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.product-shop {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.product-shop img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+@media screen and (max-width:950px) {
+    .navlinks {
+        position: fixed;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #062a2f;
+        right: -150%;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        transition: .4s;
+        z-index: 2;
+    }
+    .show-navbar,
+    .hide-navbar,
+    .navlinks-logo {
+        display: block;
+    }
+    #chk:checked~.navlinks {
+        right: 0;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+    .search-form,
+    #search-field {
+        width: 40vw;
+        font-size: 1rem;
+    }
+    .navlinks {
+        position: fixed;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #062a2f;
+        right: -150%;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        transition: .4s;
+        z-index: 2;
+    }
+    .show-navbar,
+    .hide-navbar,
+    .navlinks-logo {
+        display: block;
+    }
+    #chk:checked~.navlinks {
+        right: 0;
+    }
+}

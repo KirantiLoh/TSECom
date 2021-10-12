@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} TS Ecom {% endblock title %} </title>
+    <link rel="shortcut icon" href="{% static 'img\logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"> {% block css_files %} {% endblock css_files %}
+</head>
+
+<body>
+    <header class="navbar">
+        <p class="logo">TS Ecom</p>
+        <input type="checkbox" id="chk">
+        <form action="{% url 'Search' %}" method="get" class='search-form'>
+            <input type="search" name="q" id="search-field" placeholder="Search for..." required>
+        </form>
+
+        <ul class="navlinks">
+            <li class='navlinks-logo'>
+                <p class='logo'>TS Ecom</p>
+            </li>
+            <li><a href="{% url 'Home' %}"><i class="fas fa-home"></i> Home</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'Cart' %}"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            <li><a href="{% url 'Bought Items' %}"><i class="fas fa-envelope"></i> Your Order</a></li>
+            <li><a href="{% url 'Profile' %}"><i class="fas fa-user"></i> {{request.user}}</a></li>
+            {% else %}
+            <li><a href="{% url 'register' %}"><i class="fas fa-sign-in-alt"></i> Register</a></li>
+            <li><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            {% endif %}
+            <label for="chk" class="hide-navbar"><i class="fas fa-times"></i></label>
+        </ul>
+
+        <label for="chk" class='show-navbar'><i class="fas fa-bars"></i></label>
+    </header>
+    <div class="content">
+        {% block content %} {% endblock content %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% load static %} {% block title %} Login {% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\login.css' %}"> {% endblock css_files %} {% block content %}
+<img src='{% static "img\shopping.jpg" %}'>
+<div class="login-form">
+    <p class='title'>Login</p>
+    <form method="post">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit">Login</button>
+        <button type="reset">Reset</button>
+    </form>
+    <p class='no-acc'>Don't Have an account? Register <a href="{% url 'register' %}">here</a></p>
+    <a href="{% url 'password_reset' %}" class="no-acc">Forgot Password</a>
+</div>
+{% endblock content %}

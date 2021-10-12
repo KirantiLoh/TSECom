@@ -1,0 +1,107 @@
+{% extends "base.html" %} {% load format %} {% load static %} {% block title %} {{product.name}} {% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\product.css' %}"> {% endblock css_files %} {% block content %}
+<div class="product">
+    <div class="product-images">
+        <img src="{{product.image.url}}" class='product-image'>
+    </div>
+    <div class="product-detail">
+        <p class='product-name'>{{product.name}}</p>
+        <p class='product-price'>{% rupiah_format product.price %}</p>
+        <p class="product-rating"><i class="fas fa-star"></i> {{product.rating}}</p>
+        <div class="product-shop">
+            <img src="{{seller.image.url}}" alt='{{product.seller}}'>
+            <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a>
+        </div>
+        <p class="details">{{product.desc}}</p>
+    </div>
+    <input type="checkbox" id="show-chk">
+    <label for="show-chk" class='show-option'><i class="fas fa-arrow-up"></i></label> {% if request.user == product.seller.user %}
+    <div class="login-form">
+        <label for="show-chk" class='hide-option'><i class="fas fa-times"></i></label>
+        <p class='title'>Restock</p>
+        <p class="stock">Stock : {{product.stock}}</p>
+        <form method="post" enctype="multipart/form-data" action="{% url 'Restock' product.id %}">
+            {% csrf_token %} {{form.as_p}}
+            <button type="submit">Restock</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+    {% else %}
+    <div class="order-content">
+        <label for="show-chk" class='hide-option'><i class="fas fa-times"></i></label>
+        <p class="order-title">Order</p>
+        <p class="stock">Stock : {{product.stock}}</p>
+        {% if product.stock == 0 %}
+        <p id='out-of-stock'>OUT OF STOCK</p>
+        {% else %}
+        <form class="add-amount" method="POST" action="{% url 'Add To Cart' product.id %}">
+            {% csrf_token %}
+            <p>Amount : <span id=value></span></p>
+            <input type="number" name="amount" id="slider" min='1' max='{{product.stock}}'>
+            <button type="submit">Add To Cart</button>
+        </form>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% if reviews %}
+<ul class="reviews">
+    <p class="title">Reviews</p>
+    {% for review in reviews %}
+    <li class='review'>
+        <div class="reviewer">
+            <img src="{{review.reviewer.image.url}}" alt='{{review.reviewer}}'>
+            <a href="{% url 'Public Profile' review.reviewer.id %}">{{review.reviewer.user.first_name}}</a>
+        </div>
+        <div class="review-content">
+            {% if review.rating == 1 %}
+            <p>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+            </p>
+            {% elif review.rating == 2 %}
+            <p>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+            </p>
+            {% elif review.rating == 3 %}
+            <p>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+            </p>
+            {% elif review.rating == 4 %}
+            <p>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star'><i class="fas fa-star"></i></span>
+            </p>
+            {% else %}
+            <p>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+                <span class='star-active'><i class="fas fa-star"></i></span>
+            </p>
+            {% endif %}
+
+            <p>{{review.review}}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<script>
+</script>
+{% endblock content %}

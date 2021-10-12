@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% load format %} {% load static %} {% block title %} Fail {% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\home.css' %}"> {% endblock css_files %} {% block content %}
+<div class="hero">
+    <p class="fail-msg">Your money is not enough to buy these stuff, get some more money man</p>
+    <a href="{% url 'Cart' %}">Back to Cart</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% load format %} {% load static %} {% block title %} Search Result for : {{search}} {% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\search.css' %}"> {% endblock css_files %} {% block content %} {% if products %}
+<p class='search-result'>Search Result for : {{search}}</p>
+<ul class="products">
+    {% for product in products %}
+    <li class="product">
+        <div class="product-image">
+            <img src="{{product.image.url}}" alt="{{product.name}}">
+        </div>
+        <div class="product-detail">
+            <a href="{% url 'Product' product.id %}" class='product-name'>{{product.name | truncatechars:15}}</a>
+            <p class='product-price'>{% rupiah_format product.price %}</p>
+            <p class="sold-amount">Sold : {{product.sold}}</p>
+            <div class="extra-detail">
+                <div class="product-shop">
+                    <img src="{{product.seller.image.url}}">
+                    <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a>
+                </div>
+                <p><i class="fas fa-star"></i> {{product.rating}}</p>
+            </div>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+{% else %}
+<div class="apology">
+    <img src="{% static 'img\apology.png' %}" alt="No result found....">
+    <p>Sorry, the product you searched doesn't exists...</p>
+</div>
+
+{% endif %} {% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load format %} {% load static %} {% block title %}Cart{% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\cart.css' %}"> {% endblock css_files %} {% block content %}
+<div class="cart">
+    <p id='cart-name'>{{cart | capfirst}}</p>
+    {% if items %}
+    <ul class="cart">
+        {% for item in items %}
+        <li class="item">
+            <img src={{item.product.image.url}} class='product-img'>
+            <div class='details'>
+                <div class="product-detail">
+                    <a href="{% url 'Product' item.product.id %}" class="product-name">{{item.product.name | truncatechars:15}}</a>
+                    <p class="quantity">Qty : {{item.quantity}}</p>
+                    <p class="item-subtotal">{% rupiah_format item.subtotal %}</p>
+                    <div class="product-shop">
+                        <img src="{{item.product.seller.image.url}}">
+                        <a href="{% url 'Public Profile' item.product.seller.id %}">{{item.product.seller.user.first_name}}</a>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'Delete Item' item.id %}" class="del-product-btn">Delete</a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class='empty'>
+        <!--<img class='empty-cart' src='{% static "img\empty_cart.png" %}'>-->
+        <p class='empty-cart'><i class="fas fa-shopping-cart"></i></p>
+        <p class="no-product">You have nothing in your cart, go see some stuff</p>
+    </div>
+    {% endif %}
+    <div class="checkout">
+        <p class="total">Total : {% rupiah_format cart.total %}</p>
+        {% if cart.total <= 0 %} <div class="div">
+            <button class='checkout-btn-disabled' disabled>Checkout</button>
+    </div>
+    {% else %}
+    <div class="div">
+        <a href="{% url 'Checkout' %}" class='checkout-btn'>Checkout</a>
+    </div>
+    {% endif %}
+</div>
+</div>
+
+{% endblock content %}

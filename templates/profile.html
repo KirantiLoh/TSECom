@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% load format %} {% load static %} {% block title %} {{profile.user.first_name | capfirst}} {% endblock title %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'css\profile.css' %}"> {% endblock css_files %} {% block content %}
+<div class="container">
+    <div class="profile-container">
+        <div class="profile">
+            {% if profile.user.first_name %}
+            <p class="profile-name">{{profile.user.first_name | capfirst}}</p>
+            {% else %}
+            <p class="profile-name">{{profile.user | capfirst}}</p>
+            {% endif %} {% if profile.image %}
+            <img src="{{profile.image.url}}"> {% else %}
+            <img src="{% static 'img\default.png' %}"> {% endif %}
+            <p class="location">{{profile.city}}</p>
+        </div>
+        {% if profile.user == request.user %}
+        <p class="profile-balance">Balance : {% rupiah_format profile.balance %}</p>
+        <a href="{% url 'Edit Profile' %}">Edit Profile</a>
+        <a href="{% url 'Add Product' %}">Add New Product</a>
+        <a href="{% url 'Bought Items' %}">Items You Bought</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <br>
+        <a href="{% url 'Home' %}">Back</a> {% endif %}
+    </div>
+    <div class="sold-products-container">
+        <p class='title'>Products</p>
+        <ul class="products">
+            {% for product in sold_products %}
+            <li class="product">
+                <div class="product-image">
+                    <img src="{{product.image.url}}" alt="{{product.name}}">
+                </div>
+                <div class="product-detail">
+                    <a href="{% url 'Product' product.id %}" class='product-name'>{{product.name | truncatechars:14}}</a>
+                    <p class='product-price'>{% rupiah_format product.price %}</p>
+                    <p class="sold-amount">Sold : {{product.sold}}</p>
+                    <div class="extra-detail">
+                        <div class="product-shop">
+                            <img src="{{profile.image.url}}">
+                            <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a>
+                        </div>
+                        <p><i class="fas fa-star"></i> {{product.rating}}</p>
+                    </div>
+                    <div class="product-settings">
+                        {% if request.user == profile.user %}
+                        <a href="{% url 'Restock' product.id %}" class='restock-btn'>Restock</a>
+                        <a href="{% url 'Delete Product' product.id %}" class='del-btn'>Delete</a> {% endif %}
+                    </div>
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}
