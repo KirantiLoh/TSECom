@@ -15,6 +15,10 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config
+import cloudinary
+import cloudinary_storage
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rvfz@5tofag*v*rcy$zb70gc9a#5-6yo#300fr$!vn(p26cw($'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['//shsxiiscitsecom.herokuapp.com/', 'shsxiiscitsecom.herokuapp.com/']
+ALLOWED_HOSTS = ['shsxiiscitsecom.herokuapp.com/']
 
 
 # Application definition
@@ -43,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "api",
-    "account"
+    "account",
+    "cloudinary"
 ]
 
 MIDDLEWARE = [
@@ -138,7 +143,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -156,4 +160,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
-django_heroku.settings(locals)
+django_heroku.settings(locals())
