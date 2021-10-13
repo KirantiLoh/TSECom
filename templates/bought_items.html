@@ -17,7 +17,7 @@
                     <div class="product-shop">
                         {% if product.img.url %}
                         <img src="{{product.seller.image.url}}"> {% else %}
-                        <img src="{% static 'img/default.png'}"> {% endif %} {% if product.seller.user.first_name == "" %}
+                        <img src="{% static 'img/default.png' %}"> {% endif %} {% if product.seller.user.first_name == "" %}
                         <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user}}</a> {% else %}
                         <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a> {% endif %}
                     </div>
