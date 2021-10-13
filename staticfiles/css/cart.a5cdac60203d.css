@@ -1,0 +1,157 @@
+.cart {
+    height: 100%;
+}
+
+#cart-name {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 900;
+}
+
+.item {
+    display: flex;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    background-color: #062a2f;
+    color: #fff;
+    border-radius: 10px;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-name {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    text-overflow: ellipsis;
+}
+
+.product-status,
+.quantity,
+.item-subtotal {
+    color: rgb(187, 187, 187);
+    font-size: 0.7rem;
+}
+
+.product-shop {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.product-shop img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.product-shop a {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.extra-detail a {
+    color: #fff;
+}
+
+.checkout {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(231, 231, 231);
+    width: 250px;
+    height: 80px;
+    padding: 10px 20px;
+    border-top-left-radius: 7px;
+    overflow-y: hidden;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px 20px;
+}
+
+.buttons {
+    margin: 10px 5px;
+}
+
+.del-product-btn {
+    border: none;
+    padding: 5px 10px;
+    border: 3px #fff solid;
+    color: #062a2f;
+    background: #fff;
+    border-radius: 3px;
+    margin-left: 0;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.div {
+    margin: 8px 0;
+}
+
+.checkout-btn {
+    background-color: #062a2f;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.checkout-btn-disabled {
+    color: #062a2f;
+    background-color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.empty-cart {
+    font-size: 50vh;
+    color: #062a2f;
+}
+
+.no-product {
+    text-align: center;
+}
+
+@media screen and (max-width:400px) {
+    .item {
+        align-items: center;
+    }
+    .product-name {
+        font-size: 1.2rem;
+    }
+    .product-img {
+        width: 40vw;
+        height: 40vw;
+    }
+    .product-shop img {
+        width: 20px;
+        height: 20px;
+    }
+    .product-shop a {
+        font-size: 1rem;
+    }
+}
