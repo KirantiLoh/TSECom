@@ -53,7 +53,7 @@
     {% for review in reviews %}
     <li class='review'>
         <div class="reviewer">
-            {% if review.reviewer.img.url %}
+            {% if review.reviewer.image.url %}
             <img src="{{review.reviewer.image.url}}"> {% else %}
             <img src="{% static 'img/default.png' %}" class="default-img"> {% endif %}
             <a href="{% url 'Public Profile' review.reviewer.id %}">{{review.reviewer.user.first_name}}</a>
