@@ -35,8 +35,7 @@
     {% endif %}
     <div class="checkout">
         <p class="total">Total : {% rupiah_format cart.total %}</p>
-        {% if cart.total
-        <=0 %} <div class="div">
+        {% if cart.total <= 0 %} <div class="div">
             <button class='checkout-btn-disabled' disabled>Checkout</button>
     </div>
     {% else %}
