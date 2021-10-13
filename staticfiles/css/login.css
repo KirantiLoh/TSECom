@@ -47,7 +47,8 @@ img {
 #id_stock,
 #id_amount,
 #id_city,
-#id_review {
+#id_review,
+#id_first_name {
     display: block;
     outline: none;
     width: 100%;
