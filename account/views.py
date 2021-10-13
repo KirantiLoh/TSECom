@@ -120,7 +120,9 @@ def checkout(request):
                 product = item.product
                 product.stock -= item.quantity
                 product.sold += item.quantity
-                product.seller.balance += total
+                seller = product.seller
+                seller.balace += total
+                seller.save()
                 product.save()
                 try:
                     boughtitem = BoughtItem.objects.get(buyer = profile, product = product)
