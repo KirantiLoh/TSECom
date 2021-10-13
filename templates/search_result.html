@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% load format %} {% load static %} {% block title %} Search Result for : {{search}} {% endblock title %} {% block css_files %}
-<link rel="stylesheet" href="{% static 'css\search.css' %}"> {% endblock css_files %} {% block content %} {% if products %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}"> {% endblock css_files %} {% block content %} {% if products %}
 <p class='search-result'>Search Result for : {{search}}</p>
 <ul class="products">
     {% for product in products %}
@@ -24,7 +24,7 @@
 </div>
 {% else %}
 <div class="apology">
-    <img src="{% static 'img\apology.png' %}" alt="No result found....">
+    <img src="{% static 'img/apology.png' %}" alt="No result found....">
     <p>Sorry, the product you searched doesn't exists...</p>
 </div>
 

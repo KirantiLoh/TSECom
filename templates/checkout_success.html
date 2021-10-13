@@ -1,4 +1,4 @@
 {% extends "base.html" %} {% load format %} {% load static %} {% block title %} Success {% endblock title %} {% block css_files %}
-<link rel="stylesheet" href="{% static 'css\home.css' %}"> {% endblock css_files %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock css_files %} {% block content %}
 <p class="success-msg">Your order has been confirmed, please sit back and wait</p>
 <a href="{% url 'Bought Items' %}">Track your order</a> {% endblock content %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% load format %} {% load static %} {% block title %} {{profile.user.first_name | capfirst}} {% endblock title %} {% block css_files %}
-<link rel="stylesheet" href="{% static 'css\profile.css' %}"> {% endblock css_files %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}"> {% endblock css_files %} {% block content %}
 <div class="container">
     <div class="profile-container">
         <div class="profile">
@@ -9,7 +9,7 @@
             <p class="profile-name">{{profile.user | capfirst}}</p>
             {% endif %} {% if profile.image %}
             <img src="{{profile.image.url}}"> {% else %}
-            <img src="{% static 'img\default.png' %}"> {% endif %}
+            <img src="{% static 'img/default.png' %}"> {% endif %}
             <p class="location">{{profile.city}}</p>
         </div>
         {% if profile.user == request.user %}

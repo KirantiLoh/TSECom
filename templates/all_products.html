@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% load format %} {% load static %} {% block title %} All Products {% endblock title %} {% block css_files %}
-<link rel="stylesheet" href="{% static 'css\search.css' %}"> {% endblock css_files %} {% block content %} {% if products %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}"> {% endblock css_files %} {% block content %} {% if products %}
 <p class='title'>All Products</p>
 <ul class="products">
     {% for product in products %}
@@ -21,28 +21,10 @@
     </li>
     {% endfor %}
 </ul>
-{% if users.has_other_pages %}
-<ul class="pagination">
-    {% if users.has_previous %}
-    <li><a href="?page={{ users.previous_page_number }}">«</a></li>
-    {% else %}
-    <li class="disabled"><span>«</span></li>
-    {% endif %} {% for i in users.paginator.page_range %} {% if users.number == i %}
-    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
-    </li>
-    {% else %}
-    <li><a href="?page={{ i }}">{{ i }}</a></li>
-    {% endif %} {% endfor %} {% if users.has_next %}
-    <li><a href="?page={{ users.next_page_number }}">»</a></li>
-    {% else %}
-    <li class="disabled"><span>»</span></li>
-    {% endif %}
-</ul>
-{% endif %}
 </div>
 {% else %}
 <div class="apology">
-    <img src="{% static 'img\apology.png' %}" alt="No result found....">
+    <img src="{% static 'img/apology.png' %}" alt="No result found....">
     <p>Sorry, the product you searched doesn't exists...</p>
 </div>
 
