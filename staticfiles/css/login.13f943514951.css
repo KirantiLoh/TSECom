@@ -1,0 +1,86 @@
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    filter: brightness(0.5);
+}
+
+.login-form {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background-color: #062a2f;
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.login-form ul,
+.helptext {
+    display: block;
+    color: rgb(172, 172, 172);
+    font-size: 0.7rem;
+}
+
+#id_username,
+#id_email,
+#id_password1,
+#id_password2,
+#id_password,
+#id_desc,
+#id_name,
+#id_price,
+#id_stock,
+#id_amount,
+#id_city,
+#id_review {
+    display: block;
+    outline: none;
+    width: 100%;
+    margin: 5px 0;
+    resize: vertical;
+    padding: 3px;
+}
+
+.no-acc,
+.no-acc a {
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.no-acc a {
+    border-bottom: 3px #fff solid;
+}
+
+button,
+.back-btn {
+    border: none;
+    padding: 5px 10px;
+    border: 3px #fff solid;
+    color: #fff;
+    background: transparent;
+    border-radius: 3px;
+    margin: 10px 5px;
+    margin-left: 0;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+button[type='submit'] {
+    background: #fff;
+    color: #062a2f;
+}
