@@ -13,8 +13,11 @@
                     <p class="quantity">Qty : {{item.quantity}}</p>
                     <p class="item-subtotal">{% rupiah_format item.subtotal %}</p>
                     <div class="product-shop">
-                        <img src="{{item.product.seller.image.url}}">
-                        <a href="{% url 'Public Profile' item.product.seller.id %}">{{item.product.seller.user.first_name}}</a>
+                        {% if product.img.url %}
+                        <img src="{{product.seller.image.url}}"> {% else %}
+                        <img src="{% static 'img/default.png'}"> {% endif %} {% if product.seller.user.first_name == "" %}
+                        <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user}}</a> {% else %}
+                        <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a> {% endif %}
                     </div>
                 </div>
                 <div class="buttons">
@@ -32,7 +35,8 @@
     {% endif %}
     <div class="checkout">
         <p class="total">Total : {% rupiah_format cart.total %}</p>
-        {% if cart.total <= 0 %} <div class="div">
+        {% if cart.total
+        <=0 %} <div class="div">
             <button class='checkout-btn-disabled' disabled>Checkout</button>
     </div>
     {% else %}

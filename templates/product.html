@@ -9,8 +9,11 @@
         <p class='product-price'>{% rupiah_format product.price %}</p>
         <p class="product-rating"><i class="fas fa-star"></i> {{product.rating}}</p>
         <div class="product-shop">
-            <img src="{{seller.image.url}}" alt='{{product.seller}}'>
-            <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a>
+            {% if product.img.url %}
+            <img src="{{product.seller.image.url}}"> {% else %}
+            <img src="{% static 'img/default.png'}"> {% endif %} {% if product.seller.user.first_name == "" %}
+            <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user}}</a> {% else %}
+            <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a> {% endif %}
         </div>
         <p class="details">{{product.desc}}</p>
     </div>

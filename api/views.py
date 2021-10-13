@@ -48,9 +48,13 @@ def add_product_view(request):
             price = form.cleaned_data['price']
             stock = form.cleaned_data['stock']
             profile = Profile.objects.get(user = request.user)
-            product = Product.objects.create(seller=profile, image = image, name = name, desc = desc, price = price, stock=int(stock))
-            product.save()
-            return redirect('Product', id = product.id)
+            try:
+                product = Product.objects.get(seller=profile, name = name)
+                return redirect("Restock", id = product.id)
+            except ObjectDoesNotExist:
+                product = Product.objects.create(seller=profile, image = image, name = name, desc = desc, price = price, stock=int(stock))
+                product.save()
+                return redirect('Product', id = product.id)
     return render(request, 'add_product.html', {'form' : form})
 
 @login_required(login_url="login")

@@ -30,6 +30,8 @@
 .details {
     font-size: 0.8rem;
     text-align: justify;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .product-shop {

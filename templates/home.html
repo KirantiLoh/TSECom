@@ -22,8 +22,11 @@
                 <p class="sold-amount">Sold : {{product.sold}}</p>
                 <div class="extra-detail">
                     <div class="product-shop">
-                        <img src="{{product.seller.image.url}}">
-                        <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a>
+                        {% if product.img.url %}
+                        <img src="{{product.seller.image.url}}"> {% else %}
+                        <img src="{% static 'img/default.png'}"> {% endif %} {% if product.seller.user.first_name == "" %}
+                        <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user}}</a> {% else %}
+                        <a href="{% url 'Public Profile' product.seller.id %}">{{product.seller.user.first_name}}</a> {% endif %}
                     </div>
                     <p><i class="fas fa-star"></i> {{product.rating}}</p>
                 </div>
