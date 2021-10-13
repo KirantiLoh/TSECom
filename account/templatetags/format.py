@@ -7,7 +7,6 @@ def rupiah_format(value):
     str_value = str(value)
     separate_decimal = str_value.split(".")
     after_decimal = separate_decimal[0]
-    before_decimal = separate_decimal[1]
 
     reverse = after_decimal[::-1]
     temp_reverse_value = ""
@@ -20,4 +19,4 @@ def rupiah_format(value):
 
     temp_result = temp_reverse_value[::-1]
 
-    return "Rp " + temp_result + "," + before_decimal
+    return "Rp " + temp_result + ",00"
