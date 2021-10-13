@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Product(models.Model):
     seller = models.ForeignKey('account.Profile', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='products')
+    image = CloudinaryField('image')
     name = models.CharField(max_length=100)
     desc = models.TextField()
     price = models.DecimalField(max_digits = 9, decimal_places=0)

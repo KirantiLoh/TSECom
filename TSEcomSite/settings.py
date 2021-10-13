@@ -15,6 +15,9 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['shsxiiscitsecom.herokuapp.com/']
 
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
 
     "api",
     "account",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
@@ -154,6 +158,12 @@ TEMPLATE_LOADERS = (
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+cloudinary.config( 
+  cloud_name = config("cloud_name"), 
+  api_key = config("api_key"), 
+  api_secret = config("api_secret") 
+)
 
 LOGGING = {
     "version": 1,
