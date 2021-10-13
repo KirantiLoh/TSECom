@@ -87,6 +87,10 @@ footer {
     border-radius: 50%;
 }
 
+.default-img {
+    filter: invert(1);
+}
+
 @media screen and (max-width:950px) {
     .navlinks {
         position: fixed;
