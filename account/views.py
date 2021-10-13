@@ -121,7 +121,7 @@ def checkout(request):
                 product.stock -= item.quantity
                 product.sold += item.quantity
                 seller = product.seller
-                seller.balace += total
+                seller.balance += total
                 seller.save()
                 product.save()
                 try:
