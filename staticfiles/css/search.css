@@ -132,6 +132,9 @@
 }
 
 @media screen and (max-width:900px) {
+    .sellers {
+        justify-content: flex-start;
+    }
     .product {
         width: 30vw;
     }
@@ -143,6 +146,9 @@
 }
 
 @media screen and (max-width:500px) {
+    .sellers {
+        justify-content: flex-start;
+    }
     .product {
         width: 45vw;
     }
