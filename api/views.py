@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from .models import BoughtItem, Product, Review
 from django.db.models import Q
 from account.models import Profile, Cart, Item
-from .forms import AddProductForm, RestockForm, ReviewForm
+from .forms import AddProductForm, RestockForm, ReviewForm, EditProductForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 
@@ -13,6 +13,9 @@ from django.db.models import Avg
 def home_view(request):
     products = Product.objects.filter().order_by('-date_added')[:6]
     return render(request, 'home.html', {'products' : products})
+
+def get_started_view(request):
+    return render(request, "get_started.html")
 
 def search_result_view(request):
     if request.method == "GET":
@@ -110,8 +113,38 @@ def add_review_view(request, id):
 @login_required(login_url="login")
 def bought_item_view(request):
     profile = Profile.objects.get(user=request.user)
-    items = BoughtItem.objects.filter(buyer = profile)
+    items = BoughtItem.objects.filter(buyer = profile).order_by('-date_bought')
     return render(request, 'bought_items.html', {'items' : items})
+
+@login_required(login_url="login")
+def edit_product_view(request, id):
+    try:
+        profile = Profile.objects.get(user = request.user)
+        product = Product.objects.get(seller = profile, id = id)
+        form = EditProductForm
+        if request.method == "POST":
+            form = EditProductForm(request.POST, request.FILES)
+            if form.is_valid():
+                product_image = form.cleaned_data['product_image']
+                name = form.cleaned_data['name']
+                desc = form.cleaned_data['desc']
+                price = form.cleaned_data['price']
+                stock = form.cleaned_data['stock']
+                if product_image:
+                    product.image = product_image
+                elif name:
+                    product.name = name
+                elif desc:
+                    product.desc = desc
+                elif price:
+                    product.price = int(price)
+                elif stock:
+                    product.stock += int(stock)
+                product.save()
+                return redirect('Product', id=id)
+        return render(request, "edit_product.html", {"form" : form, "product" : product})
+    except ObjectDoesNotExist:
+        return redirect("Checkout Fail")
 
 def send_message(request):
     if request.method == 'POST':

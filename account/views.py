@@ -85,6 +85,7 @@ def add_to_cart(request,id):
     else:
         return redirect('Product', id =id)
 
+@login_required(login_url="login")
 def delete_item_from_cart(request, id):
     cart = Cart.objects.get(user = request.user)
     item = Item.objects.get(id = id)

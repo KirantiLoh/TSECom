@@ -45,7 +45,7 @@
                     </div>
                     <div class="product-settings">
                         {% if request.user == profile.user %}
-                        <a href="{% url 'Restock' product.id %}" class='restock-btn'>Restock</a>
+                        <a href="{% url 'Edit Product' product.id %}" class='restock-btn'>Edit</a>
                         <a href="{% url 'Delete Product' product.id %}" class='del-btn'>Delete</a> {% endif %}
                     </div>
 
