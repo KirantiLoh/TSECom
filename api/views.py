@@ -22,8 +22,10 @@ def search_result_view(request):
         search = request.GET.get('q')
         if search == '':
             products = None
+            sellers = None
+        sellers = Profile.objects.filter(Q(user__username__icontains=search) | Q(user__first_name__icontains = search)).order_by('-rank')[:1]
         products = Product.objects.filter(Q(name__icontains=search) | Q(desc__icontains=search)).order_by('-sold').order_by('-rating')
-    return render(request, 'search_result.html', {'products' : products, 'search' : search})
+    return render(request, 'search_result.html', {'products' : products, 'search' : search, 'sellers' : sellers})
 
 def product_view(request, id):
     product = Product.objects.get(id = id)

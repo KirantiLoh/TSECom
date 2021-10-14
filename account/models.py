@@ -4,10 +4,16 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
+    ranks = (
+        (1, "Bronze"),
+        (2, "Silver"),
+        (3, "Gold")
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits = 9, decimal_places=0)
     image = CloudinaryField('image')
     city = models.CharField(max_length=100, default='')
+    rank = models.PositiveSmallIntegerField(choices=ranks, default=1)
 
     def __str__(self):
         return f"{self.user}"

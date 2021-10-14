@@ -4,6 +4,31 @@
     margin: 10px 0;
 }
 
+.seller {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0px 0px 6px 0px #062a2f;
+    border-radius: 7px;
+    background-color: #062a2f;
+    color: #fff;
+    margin: 15px;
+    padding: 10px;
+}
+
+.seller-profile {
+    text-align: center;
+    width: max-content;
+    padding: 5px;
+}
+
+.seller-profile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: block;
+}
+
 .products {
     display: flex;
     align-items: center;
