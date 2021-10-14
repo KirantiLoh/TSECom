@@ -4,6 +4,12 @@
     margin: 10px 0;
 }
 
+.sellers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .seller {
     display: flex;
     justify-content: center;
@@ -14,6 +20,7 @@
     color: #fff;
     margin: 15px;
     padding: 10px;
+    width: max-content;
 }
 
 .seller-profile {
@@ -27,6 +34,51 @@
     height: 200px;
     border-radius: 50%;
     display: block;
+}
+
+.seller-profile a {
+    color: #fff;
+    font-size: 1.3rem;
+    display: block;
+}
+
+.visit-shop-btn {
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 3px #fff solid;
+    color: #fff;
+    border-radius: 3px;
+    transition: .3s ease-in-out;
+    position: relative;
+}
+
+.visit-shop-btn::before,
+.visit-shop-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transition: .4s ease-in-out;
+    background: #fff;
+    z-index: -1;
+}
+
+.visit-shop-btn::before {
+    left: 0;
+}
+
+.visit-shop-btn::after {
+    right: 0;
+}
+
+.visit-shop-btn:hover::before,
+#learn-more-btn:hover:after {
+    width: 100%;
+}
+
+.visit-shop-btn:hover {
+    color: #062a2f;
 }
 
 .products {
