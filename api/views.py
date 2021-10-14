@@ -23,7 +23,7 @@ def search_result_view(request):
         if search == '':
             products = None
             sellers = None
-        sellers = Profile.objects.filter(Q(user__username__icontains=search) | Q(user__first_name__icontains = search)).order_by('-rank')[:1]
+        sellers = Profile.objects.filter(Q(user__username__icontains=search) | Q(user__first_name__icontains = search)).order_by('-rank')[:3]
         products = Product.objects.filter(Q(name__icontains=search) | Q(desc__icontains=search)).order_by('-sold').order_by('-rating')
     return render(request, 'search_result.html', {'products' : products, 'search' : search, 'sellers' : sellers})
 
